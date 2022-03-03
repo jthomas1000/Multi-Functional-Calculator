@@ -25,11 +25,15 @@ public class MainActivity extends AppCompatActivity {
     private Boolean flag = false;
     private BigDecimal percent;
     private Boolean percentClicked = false;
+    private Boolean sqrtClicked = false;
 
 
     private void opSelected (CalculatorState operator) {
         switch (operator) {
             case PLUS:
+                if (sqrtClicked){
+                    rightSide = new BigDecimal(String.valueOf(rhs));
+                }
                 if (isSign){
                     if (isOnLeftSide){
                         rightSide = new BigDecimal(String.valueOf(rhs));
@@ -52,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
             case MINUS:
 
+                if (sqrtClicked){
+                    rightSide = new BigDecimal(String.valueOf(rhs));
+                }
                 if (isSign){
                     if (isOnLeftSide){
                         rightSide = new BigDecimal(String.valueOf(rhs));
@@ -73,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case MULTIPLY:
+                if (sqrtClicked){
+                    rightSide = new BigDecimal(String.valueOf(rhs));
+                }
                 if (isSign){
                     if (isOnLeftSide){
                         rightSide = new BigDecimal(String.valueOf(rhs));
@@ -95,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
             case DIVIDE:
 
+                if (sqrtClicked){
+                    rightSide = new BigDecimal(String.valueOf(rhs));
+                }
                 if (isSign){
                     if (isOnLeftSide){
                         rightSide = new BigDecimal(String.valueOf(rhs));
@@ -343,6 +356,8 @@ public class MainActivity extends AppCompatActivity {
                 leftSide = new BigDecimal(String.valueOf(lhs));
                 double sqrt = leftSide.doubleValue();
                 binding.displayId.setText(String.valueOf(Math.pow(sqrt,amount)));
+                leftSide = new BigDecimal(Math.pow(sqrt,amount));
+                sqrtClicked = true;
 
             }
         });
